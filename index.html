@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ถึงน้องเบล</title>
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(to bottom, #2c3e50, #4ca1af);
+    font-family: 'Segoe UI', sans-serif;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* กล่องข้อความ */
+.box {
+    text-align: center;
+    max-width: 320px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: 1.5s;
+}
+
+.box.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+h1 {
+    font-weight: normal;
+    margin-bottom: 20px;
+}
+
+p {
+    line-height: 1.8;
+    color: #e0e0e0;
+}
+
+/* ปุ่ม */
+button {
+    margin-top: 25px;
+    padding: 10px 20px;
+    border-radius: 30px;
+    border: none;
+    background: white;
+    color: #2c3e50;
+    font-size: 14px;
+}
+
+/* ข้อความเริ่ม */
+.start {
+    position: absolute;
+    opacity: 0.6;
+}
+
+/* ดาวลอย */
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    opacity: 0.8;
+    animation: fall 5s linear infinite;
+}
+
+@keyframes fall {
+    from { transform: translateY(-10vh); }
+    to { transform: translateY(110vh); }
+}
+</style>
+</head>
+
+<body onclick="start()">
+
+<div class="start">แตะตรงนี้นะ</div>
+
+<div class="box" id="content">
+    <h1>ถึงน้องเบล 💙</h1>
+    <p>
+        พี่รู้ว่ามันคงไม่ง่ายเลย<br>
+        การต้องปล่อยใครบางคนไป<br><br>
+        มันอาจยังเจ็บอยู่ก็ได้<br>
+        และนั่นไม่ผิดเลยนะ<br><br>
+        แต่อยากให้น้องรู้ว่า...<br>
+        วันนึงมันจะค่อย ๆ เบาลง<br><br>
+        แล้วน้องจะยิ้มได้อีกครั้งแน่นอน 🌙
+    </p>
+
+    <button onclick="goTikTok(event)">ดูคลิปนี้ 🎬</button>
+</div>
+
+<audio id="music" src="https://www.bensound.com/bensound-music/bensound-slowmotion.mp3"></audio>
+
+<script>
+function start() {
+    document.getElementById("content").classList.add("show");
+    document.querySelector(".start").style.display = "none";
+    document.getElementById("music").play();
+
+    // ดาวตกเบา ๆ
+    for (let i = 0; i < 30; i++) {
+        let s = document.createElement("div");
+        s.className = "star";
+        s.style.left = Math.random() * 100 + "vw";
+        s.style.animationDuration = (3 + Math.random() * 3) + "s";
+        document.body.appendChild(s);
+    }
+}
+
+function goTikTok(event) {
+    event.stopPropagation();
+    window.open("https://www.tiktok.com/@zennsenpai5/video/7604108149024623892", "_blank");
+}
+</script>
+
+</body>
+</html>
